@@ -30,7 +30,7 @@ const CreatorHome = (props) => {
 	const users = useSelector(selectorAllUsers);
 	const articles = useSelector(selectorArticles);
 	const reviews = useSelector(selectorAllReviews);
-	
+
 	useEffect(() => {
 		dispatch(GetAllUsersStart());
 		dispatch(getAllReviewsStart());

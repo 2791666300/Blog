@@ -2,8 +2,10 @@
 import { Fragment, useEffect, useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Dropdown } from "antd";
+
 import { LogoutOutlined, SettingOutlined } from "@ant-design/icons";
 import { Outlet, useLocation } from "react-router-dom";
+
 import { ReactComponent as BlackPageIcon } from "../../Assets/black-pagelogo.svg";
 import { ReactComponent as WhitePageIcon } from "../../Assets/white-pagelogo.svg";
 import ContainerTow from "../../Container/ContainerTwo/containerTwo.component";
@@ -107,10 +109,14 @@ const Navigation = () => {
 		},
 	];
 
+	function scolltoTop() {
+		window.scrollTo(0, 0);
+	}
+
 	return (
 		<Fragment>
 			<ContainerTow>
-				<NavigationContainer>
+				<NavigationContainer onClick={scolltoTop}>
 					{windowSize.width < 1000 && (
 						<BrightnessPageButton onClick={toggleHandler}>
 							<NavBartoggle color='white' />
@@ -170,7 +176,7 @@ const Navigation = () => {
 							trigger={["click"]}>
 							<a onClick={(e) => e.preventDefault()}>
 								<HeadPortrait
-									src={`http://localhost:1000/img/users/${currentUser.photo}`}
+									src={`http://42.194.140.99:80/img/users/${currentUser.photo}`}
 									alt='default'
 								/>
 							</a>
@@ -178,6 +184,7 @@ const Navigation = () => {
 					)}
 					{/* {serach && <SearchContainer searchHandler={searchHandler} />} */}
 				</NavigationContainer>
+
 				<Outlet />
 			</ContainerTow>
 		</Fragment>

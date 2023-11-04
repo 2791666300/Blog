@@ -3,7 +3,7 @@ import { ToTopContainer } from "./totop.style";
 const ToTop = () => {
 	return (
 		<ToTopContainer>
-			<FloatButton.BackTop visibilityHeight={100}/>
+			<FloatButton.BackTop visibilityHeight={100} />
 		</ToTopContainer>
 	);
 };

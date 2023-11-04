@@ -5,7 +5,7 @@ export const RealTimeContainer = styled.div`
 	font-size: 12rem;
 	font-weight: 800;
 	color: white;
-	@media only screen and (max-width: ${Breakpoint.bp_phone}) {
-		font-size: 7rem;
+	@media only screen and (max-width: ${Breakpoint.bp_small}) {
+		font-size: 5rem;
 	}
 `;

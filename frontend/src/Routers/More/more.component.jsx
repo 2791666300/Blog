@@ -1,55 +1,35 @@
-import { MoreContainer } from "./more.style";
+import { MoreContainer, PorBox } from "./more.style";
+import ProBoxItem from "../../Components/ProBoxItem/ProBoxItem.component";
 
-import { Carousel, Image } from "antd";
-
-const contentStyle = {
-	paddingTop: "20px",
-	height: "90vh",
-	color: "#fff",
-	lineHeight: "90vh",
-	textAlign: "center",
-	backgroundColor: "#1B1B1D",
-};
 const More = () => {
-	const onChange = (currentSlide) => {
-		console.log(currentSlide);
-	};
 	return (
 		<MoreContainer>
-			<Carousel afterChange={onChange} autoplay>
-				<div>
-					<div style={contentStyle}>
-						<Image
-							height={500}
-							src='https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
-						/>
-					</div>
-				</div>
-				<div>
-					<div style={contentStyle}>
-						<Image
-							height={500}
-							src='https://gw.alipayobjects.com/zos/antfincdn/LlvErxo8H9/photo-1503185912284-5271ff81b9a8.webp'
-						/>
-					</div>
-				</div>
-				<div>
-					<div style={contentStyle}>
-						<Image
-							height={500}
-							src='https://gw.alipayobjects.com/zos/antfincdn/cV16ZqzMjW/photo-1473091540282-9b846e7965e3.webp'
-						/>
-					</div>
-				</div>
-				<div>
-					<div style={contentStyle}>
-						<Image
-							height={500}
-							src='https://gw.alipayobjects.com/zos/antfincdn/x43I27A55%26/photo-1438109491414-7198515b166b.webp'
-						/>
-					</div>
-				</div>
-			</Carousel>
+			<PorBox>
+				<ProBoxItem
+					title='校园足球平台'
+					intro='校园足球一站式服务管理平台'
+					desc='为校园足球协会、足球爱好者、学校各院队队员提供一个赛事运营、注册管理、查看赛事、比较数据宣传的应用平台'
+					layout='row'
+					address='https://github.com/2791666300/campusfootballplatform'
+					imgs={["/img/1.足球.jpg", "/img/2.足球.jpg", "/img/3.足球.jpg"]}
+				/>
+				<ProBoxItem
+					title='酒店管理系统'
+					intro='酒店内部一站式后台管理系统平台'
+					desc='实现一个酒店预定、入住、管理、签出、结算、统计、数据可视化的管理系统'
+					layout='row-reverse'
+					imgs={["/img/1.酒店.jpg", "/img/2.酒店.jpg", "/img/3.酒店.jpg"]}
+					address='https://github.com/2791666300/the-wild-oasis'
+				/>
+				<ProBoxItem
+					title='电商平台'
+					intro='类似淘宝电商平台的简化式平台'
+					desc='具有登录、注册、添加购物车、结算、数据可视化的简单的电商平台'
+					layout='row'
+					address='https://github.com/2791666300/firstsite'
+					imgs={["/img/1.电商.jpg", "/img/2.电商.jpg", "/img/3.电商.jpg"]}
+				/>
+			</PorBox>
 		</MoreContainer>
 	);
 };

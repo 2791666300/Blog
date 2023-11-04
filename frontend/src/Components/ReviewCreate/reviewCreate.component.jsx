@@ -43,7 +43,7 @@ const ReviewCreate = (props) => {
 				<CurrentUserContainer>
 					{currentUser && (
 						<HeadPortrait
-							src={`http://localhost:1000/img/users/${currentUser?.photo}`}
+							src={`http://42.194.140.99:80/img/users/${currentUser?.photo}`}
 							alt='default'
 						/>
 					)}

@@ -3,11 +3,11 @@ import { Timeline, ConfigProvider } from "antd";
 import { useSelector } from "react-redux";
 
 import { FileTextFilled } from "@ant-design/icons";
-
-import { timeConversion } from "../../Utils/TimeConversion";
 import { Link } from "react-router-dom";
 
-import { AboutBlogContainer } from "./aboutBolg.style";
+import { timeConversion } from "../../Utils/TimeConversion";
+
+import { AboutBlogContainer, ProviderContainer } from "./aboutBolg.style";
 import { selectorArticles } from "../../Store/articles/articles.selector";
 
 const AboutBolg = () => {
@@ -29,12 +29,7 @@ const AboutBolg = () => {
 
 	return (
 		<AboutBlogContainer>
-			<div
-				style={{
-					width: "60rem",
-					height: "100vh",
-					paddingTop: "5rem",
-				}}>
+			<ProviderContainer>
 				<h2 style={{ textAlign: "center", paddingBottom: "5rem" }}>时间轴</h2>
 				<ConfigProvider
 					theme={{
@@ -51,7 +46,7 @@ const AboutBolg = () => {
 					}}>
 					<Timeline mode='alternate' items={items} />
 				</ConfigProvider>
-			</div>
+			</ProviderContainer>
 		</AboutBlogContainer>
 	);
 };

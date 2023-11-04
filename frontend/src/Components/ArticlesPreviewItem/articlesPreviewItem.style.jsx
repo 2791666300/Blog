@@ -16,6 +16,9 @@ export const ItemMetaContainer = styled.div`
 	width: 100%;
 	height: 3rem;
 	font-size: 1.4rem;
+	@media only screen and (max-width: ${Breakpoint.bp_small}) {
+		font-size: 1rem;
+	}
 	letter-spacing: 0.05rem;
 `;
 
@@ -72,6 +75,12 @@ export const ContentWrapperList = styled.ul`
 `;
 
 export const ContentWrapperItem = styled.li`
+	h3 {
+		font-size: 2.4rem;
+		@media only screen and (max-width: ${Breakpoint.bp_small}) {
+			font-size: 1.5rem;
+		}
+	}
 	p {
 		max-width: 40rem;
 		overflow: hidden;
@@ -80,12 +89,13 @@ export const ContentWrapperItem = styled.li`
 		color: grey;
 		font-size: 1.2rem;
 		@media only screen and (max-width: ${Breakpoint.bp_small}) {
-			max-width: 32rem;
+			max-width: 25rem;
+			font-size: 0.9rem;
 		}
 	}
 
 	div {
-		width: 33rem;
+		width: 25rem;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -110,9 +120,10 @@ export const EyeContainer = styled(Eye)`
 export const CoverImg = styled.div`
 	height: 8rem;
 	width: 12rem;
-	@media only screen and (max-width: ${Breakpoint.bp_medium}) {
-		height: 5rem;
-		width: 8rem;
+	margin: 0.5rem;
+	@media only screen and (max-width: ${Breakpoint.bp_small}) {
+		height: 4rem;
+		width: 7rem;
 	}
 	border-radius: 0.4rem;
 	overflow: hidden;

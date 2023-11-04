@@ -3,7 +3,7 @@ import axios from 'axios'
 // type 是“密码”或“数据”
 export const updateFile = async (data) => {
     try {
-        const url = 'http://localhost:1000/api/v1/user/updateMe'
+        const url = 'http://42.194.140.99:80/api/v1/user/updateMe'
 
         const res = await axios({
             method: 'PATCH',

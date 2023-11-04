@@ -3,7 +3,8 @@ const morgan = require('morgan')
 const cors = require('cors')
 const compression = require('compression')
 const cookieParser = require('cookie-parser')
-const globalErrorHandler = require('./controllers/errorController')
+const globalErrorHandler = require('./Controllers/errorController')
+const fs = require('fs')
 
 // 路由
 const userRouter = require('./Routers/userRouter')
@@ -15,7 +16,7 @@ const app = express()
 
 // app.use((req, res, next) => {
 
-//     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:1000')
+//     res.setHeader('Access-Control-Allow-Origin', 'http://42.194.140.99:80')
 //     res.setHeader('Access-Control-Allow-Credentials', 'true')
 //     next()
 // })
@@ -27,6 +28,7 @@ app.options('*', cors())
 app.use(compression())
 // 提供静态文件 中间件
 app.use(express.static('./public'))
+app.use(express.static('./build'))
 
 
 // 开发日志
@@ -46,6 +48,11 @@ app.use(express.json())
 app.use('/api/v1/user', userRouter)
 app.use('/api/v1/articles', ArticlesRouter)
 app.use('/api/v1/reviews', reviewRouter)
+
+app.get('*', (req, res) => {
+    res.setHeader('Content-Type', 'text/html')
+    res.sendFile(`${__dirname}/build/index.html`)
+})
 
 app.use(globalErrorHandler)
 module.exports = app

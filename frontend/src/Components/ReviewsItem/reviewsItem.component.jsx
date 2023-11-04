@@ -82,7 +82,7 @@ const ReviewsItem = (props) => {
 			{contextHolder}
 			<ReviewsItemPhoto>
 				<img
-					src={`http://localhost:1000/img/users/${user.photo}`}
+					src={`http://42.194.140.99:80/img/users/${user.photo}`}
 					alt={user.photo}
 				/>
 			</ReviewsItemPhoto>

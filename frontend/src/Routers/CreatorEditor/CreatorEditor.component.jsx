@@ -1,12 +1,12 @@
 import { useCallback, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { message } from "antd";
+import { message, Input } from "antd";
 import Editor from "for-editor";
 import { TableOutlined, IdcardOutlined } from "@ant-design/icons";
-import { Input } from "antd";
 
 import { selectorCurrentUser } from "../../Store/users/user.selector";
+import { selectorArticles } from "../../Store/articles/articles.selector";
 import {
 	CreatorEditorContainer,
 	EditorContainer,
@@ -20,10 +20,19 @@ import { useNavigate, useParams } from "react-router-dom";
 const CreatorEditor = (props) => {
 	const navigate = useNavigate();
 	const { articleId } = useParams();
-	console.log(articleId);
-	const [value, setValue] = useState(localStorage.getItem("articles"));
-	const [category, setCategory] = useState("");
-	const [label, setLabel] = useState("");
+	const articles = useSelector(selectorArticles);
+
+	const currentArticle = articles?.find((item) => item.id === articleId);
+
+	const [value, setValue] = useState(
+		!!currentArticle ? currentArticle.article : localStorage.getItem("article"),
+	);
+	const [category, setCategory] = useState(
+		articleId ? currentArticle.category.join(",") : "",
+	);
+	const [label, setLabel] = useState(
+		articleId ? currentArticle.label.join(",") : "",
+	);
 
 	const handleChange = (va) => {
 		setValue(va);
@@ -38,7 +47,7 @@ const CreatorEditor = (props) => {
 			form.append("img", file);
 			const res = await axios({
 				method: "POST",
-				url: "http://127.0.0.1:1000/api/v1/articles/addimg",
+				url: "http://42.194.140.99:80/api/v1/articles/addimg",
 				data: form,
 			});
 			if (res.data.status === "success") {
@@ -48,7 +57,7 @@ const CreatorEditor = (props) => {
 				});
 			}
 			const url =
-				"http://localhost:1000/" +
+				"http://42.194.140.99:80/" +
 				res.data.replace(/^public\\/, "").replace(/\\/g, "/");
 
 			setValue((v) => v + `\n![${res.data}](${url})`);
@@ -56,47 +65,73 @@ const CreatorEditor = (props) => {
 		[messageApi],
 	);
 
-	const SaveHandle = async (articles) => {
+	const SaveHandle = async (article) => {
 		messageApi.open({
 			type: "success",
 			content: "保存成功！！",
 		});
-		localStorage.setItem("articles", articles);
+		localStorage.setItem("article", article);
 	};
 
 	const releaseHandle = async () => {
 		const primaryTitle = value.match(/^#.*/gm)[0].split(" ")[1];
 		const introduction = value.match(/^>.*/gm)[0].split(" ")[1];
 		const coverImg = value.match(/^!\[public.*/gm)[0].match(/http.*g/)[0];
-		try {
-			const res = await axios({
-				method: "POST",
-				url: "http://127.0.0.1:1000/api/v1/articles",
-				data: {
-					primaryTitle,
-					introduction,
-					label: label.split(" "),
-					category: category.split(" "),
-					user: currentUser._id,
-					coverImg,
-					article: value,
-				},
-			});
-
-			if ((res.data.status = "success")) {
-				messageApi.open({
-					type: "success",
-					content: "发布成功！！",
+		const data = {
+			primaryTitle,
+			introduction,
+			label: label.split(","),
+			category: category.split(","),
+			user: currentUser._id,
+			coverImg,
+			article: value,
+		};
+		if (!articleId) {
+			try {
+				const res = await axios({
+					method: "POST",
+					url: "http://42.194.140.99:80/api/v1/articles",
+					data: data,
 				});
-				setTimeout(() => {
-					navigate(`/navi/articles/`);
-				}, 1500);
+
+				if ((res.data.status = "success")) {
+					messageApi.open({
+						type: "success",
+						content: "发布成功！！",
+					});
+					setTimeout(() => {
+						navigate(`/navi/articles/`);
+					}, 1500);
+				}
+			} catch (error) {
+				messageApi.open({
+					type: "error",
+					content: "发布失败！！",
+				});
 			}
-		} catch (error) {
-			messageApi.open({
-				type: "error",
-				content: "发布失败！！",
-			});
+		} else {
+			try {
+				const res = await axios({
+					method: "PATCH",
+					url: `http://42.194.140.99:80/api/v1/articles/${articleId}`,
+					data: data,
+				});
+
+				if ((res.data.status = "success")) {
+					messageApi.open({
+						type: "success",
+						content: "更新成功！！",
+					});
+					setTimeout(() => {
+						navigate(`/navi/articles/${articleId}`);
+					}, 1500);
+				}
+			} catch (error) {
+				messageApi.open({
+					type: "error",
+					content: "更新失败失败！！",
+				});
+			}
 		}
 	};
 
@@ -136,7 +171,7 @@ const CreatorEditor = (props) => {
 				/>
 				<div onClick={releaseHandle}>
 					<Button buttonType={BUTTON_TYPE_CLASSES.action_1_blue}>
-						发布 &rarr;
+						{articleId ? "更新" : "发布"} &rarr;
 					</Button>
 				</div>
 			</CategoryLable>

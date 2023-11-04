@@ -14,7 +14,7 @@ const getButton = (buttonType = TEXT_BUTTON_TYPE_CLASSES.base) =>
 		[TEXT_BUTTON_TYPE_CLASSES.base_2]: TwoButton,
 	}[buttonType]);
 
-const TextButton = ({ children, buttonType, goto, ...otherProps }) => {
+const TextButton = ({ children, buttonType, goto, url, ...otherProps }) => {
 	const CustomButton = getButton(buttonType);
 	if (goto) {
 		return (
@@ -22,6 +22,14 @@ const TextButton = ({ children, buttonType, goto, ...otherProps }) => {
 				<Link className='btn-text' to={goto}>
 					{children}
 				</Link>
+			</CustomButton>
+		);
+	} else if (!!url) {
+		return (
+			<CustomButton {...otherProps}>
+				<a className='btn-text' href={url} target='_blank' title={url}>
+					{children}
+				</a>
 			</CustomButton>
 		);
 	} else {

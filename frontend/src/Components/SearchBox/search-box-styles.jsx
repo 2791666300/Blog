@@ -16,6 +16,8 @@ export const InputForm = styled.input`
 	}
 
 	@media only screen and (max-width: ${Breakpoint.bp_phone}) {
-		width: 20rem;
+		width: 18rem;
+		font-size: 1.2rem;
+		height: 2.5rem;
 	}
 `;

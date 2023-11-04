@@ -35,6 +35,7 @@ const ArticlesPreviewItem = (props) => {
 	const goToArticle = () => {
 		dispatch(ArticleClicksStart(clicked + 1, id, "clicked"));
 		navigate(`/navi/articles/${id}`);
+		window.scrollTo(0, 0);
 	};
 	return (
 		<ArticlesPreviewItemContainer onClick={goToArticle}>

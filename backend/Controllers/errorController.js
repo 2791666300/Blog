@@ -1,15 +1,15 @@
-const AppError = require("../utils/appError");
+const AppError = require("../Utils/appError");
 
 // 句柄转换错误
 const handleCastErrorDB = err => {
     const message = `无效的 ${err.path}: ${err.value}`
     return new AppError(message, 404)
-    
+
 }
 
 // 重复字段处理
 const handleDuplicateFieldsDB = err => {
-    
+
     // const message = `重复的字段值: ${err.keyValue.email}    请使用另一个值!`;
     const message = 'Emial错误或者已经注册过'
     return new AppError(message, 404)
@@ -30,7 +30,7 @@ const handleJWTExpireError = err => new AppError('令牌过期，请重新登录
 
 // development 状态下
 const sendErrorDev = (err, res) => {
-    
+
     res.status(err.statusCode).json({
         status: err.status,
         error: err,
@@ -41,18 +41,18 @@ const sendErrorDev = (err, res) => {
 
 // production 状态下
 const sendErrorProd = (err, res) => {
-    
+
     // 操作、可信错误：向客户端发送消息
-    if (err.isPerational){
+    if (err.isPerational) {
         res.status(err.statusCode).json({
             status: err.status,
             message: err.message
         });
 
-    
 
-    // 编程或其他未知错误：不要泄漏错误详细信息
-    }else{
+
+        // 编程或其他未知错误：不要泄漏错误详细信息
+    } else {
         res.status(500).json({
             status: 'error',
             message: 'Something went very worong'
@@ -64,27 +64,28 @@ module.exports = (err, req, res, next) => {
     err.statusCode = err.statusCode || 500;
     err.status = err.status || 'error';
     console.log(process.env.NODE_ENV)
-    
-    if(process.env.NODE_ENV === 'development'){
+
+    if (process.env.NODE_ENV === 'development') {
         sendErrorDev(err, res)
-    }else if(process.env.NODE_ENV === 'production'){
+    } else if (process.env.NODE_ENV === 'production') {
         // console.log(JSON.parse(JSON.stringify(err)))
-        
+
         // ConstError
         if (JSON.parse(JSON.stringify(err)).name === 'CastError') err = handleCastErrorDB(err);
 
         // MongoError
-        if(err.code === 11000) err = handleDuplicateFieldsDB(err)
+        if (err.code === 11000) err = handleDuplicateFieldsDB(err)
 
         // ValidationError
-        if(JSON.parse(JSON.stringify(err)).name === 'ValidationError') err = handleValidationErrorDB(err)
+        if (JSON.parse(JSON.stringify(err)).name === 'ValidationError') err = handleValidationErrorDB(err)
 
         // JsonWebTokenError
-        if(JSON.parse(JSON.stringify(err)).name === 'JsonWebTokenError') err = handleJWTError(err)
+        if (JSON.parse(JSON.stringify(err)).name === 'JsonWebTokenError') err = handleJWTError(err)
 
         // TokenExpiredError
-        if(JSON.parse(JSON.stringify(err)).name === 'TokenExpiredError') err = handleJWTExpireError(err)
+        if (JSON.parse(JSON.stringify(err)).name === 'TokenExpiredError') err = handleJWTExpireError(err)
 
+        console.log(err)
 
         // 没有具体的错误则统一使用seedErrorProd错误处理函数
         sendErrorProd(err, res)

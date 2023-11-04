@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const { promisify } = require('util')
 const User = require('../Models/userModel')
 const catchAsync = require('../Utils/catchAsync')
-const AppError = require('../Utils/appError')
+const AppError = require("../Utils/appError");
 
 
 // 生成token的方法

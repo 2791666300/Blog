@@ -2,7 +2,12 @@ import styled from "styled-components";
 import Breakpoint from "../../constants/Breakpoint";
 export const FriendShipLinksContainer = styled.div`
 	height: 24rem;
-	width: 55rem;
+	width: 60rem;
+	@media only screen and (max-width: ${Breakpoint.bp_small}) {
+		height: 20rem;
+		width: 25rem;
+	}
+
 	color: white;
 
 	display: flex;
@@ -26,6 +31,9 @@ export const FriendShipLinksItem = styled.a`
 	height: 100%;
 	color: white;
 	font-size: 1.25rem;
+	@media only screen and (max-width: ${Breakpoint.bp_small}) {
+		font-size: 0.8rem;
+	}
 	font-weight: 700;
 	display: flex;
 	flex-direction: column;

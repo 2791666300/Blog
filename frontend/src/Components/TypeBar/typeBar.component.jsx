@@ -32,9 +32,9 @@ const TypeBar = ({ articleId, articles }) => {
 	const reviews = useSelector(selectorCurrentReviews);
 
 	const reviewsCount =
-		reviews.reduce((pre, nex) => {
+		reviews?.reduce((pre, nex) => {
 			return pre + nex.comments.length;
-		}, 0) + reviews.length;
+		}, 0) + reviews?.length;
 	const collapseHandler = () => {
 		setCollapse(!collapse);
 	};

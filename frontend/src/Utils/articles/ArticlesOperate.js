@@ -4,7 +4,7 @@ export const GetAllArticles = async () => {
     try {
         const res = await axios({
             method: 'GET',
-            url: 'http://localhost:1000/api/v1/articles'
+            url: 'http://42.194.140.99:80/api/v1/articles'
         })
         return res.data.data.articles
     } catch (err) {
@@ -17,7 +17,7 @@ export const UpdateArticle = async ({ articleDate, path, type }) => {
     try {
         await axios({
             method: 'PATCH',
-            url: `http://localhost:1000/api/v1/articles/${path}`,
+            url: `http://42.194.140.99:80/api/v1/articles/${path}`,
             data: { [type]: articleDate }
         })
 

@@ -59,7 +59,6 @@ const Profile = () => {
 		dispatch(UpdateHeadPortraitStart(form));
 	};
 
-	
 	return (
 		<ContentContainer>
 			<h1>个人资料</h1>
@@ -67,7 +66,7 @@ const Profile = () => {
 				<PortraitChange>
 					<div>
 						<Portrait
-							imgUrl={`http://localhost:1000/img/users/${currentUser.photo}`}
+							imgUrl={`http://42.194.140.99:80/img/users/${currentUser.photo}`}
 						/>
 						<form action='' onSubmit={fileSubmit}>
 							<FormUploadPhoto

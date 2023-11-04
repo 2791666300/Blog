@@ -1,6 +1,6 @@
 const Articles = require('../Models/ArticlesModel')
 const catchAsync = require('../Utils/catchAsync')
-const AppError = require('../Utils/appError')
+const AppError = require("../Utils/appError");
 
 
 exports.getAllArticles = catchAsync(async (req, res) => {
