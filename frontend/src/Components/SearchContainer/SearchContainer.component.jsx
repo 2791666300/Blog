@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as ArticleIcon } from "../../Assets/article.svg";
 
@@ -20,7 +19,6 @@ import {
 } from "./SearchContainer.style";
 
 const SearchContainer = (props) => {
-	const navigate = useNavigate();
 	const articles = useSelector(selectorArticles);
 	const [filteredArticles, setFilteredAticles] = useState([]);
 
@@ -41,7 +39,6 @@ const SearchContainer = (props) => {
 
 	const goToArticle = (id) => {
 		props.onCloseModal?.();
-		navigate(`/navi/articles/${id}`);
 	};
 
 	return (
@@ -57,13 +54,12 @@ const SearchContainer = (props) => {
 						return (
 							<SearchContentItem
 								key={item.id}
-								onClick={() => {
-									goToArticle(item.id);
-								}}>
+								to={`articles/${item.id}`}
+								onClick={goToArticle}>
 								<ArticleIcon />
 								<h2>{item.primaryTitle}</h2>
 								<div>{timeConversion(new Date(item.publication))}</div>
-								<img src={`/users/${item.coverImg}`} alt={item.coverImg} />
+								<img src={`${item.coverImg}`} alt={item.coverImg} />
 							</SearchContentItem>
 						);
 					})}

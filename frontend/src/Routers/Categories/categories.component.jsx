@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux";
 import { selectorArticles } from "../../Store/articles/articles.selector";
 
+import Spinner from "../../Components/Spinner/Spinner.component";
+
 import {
 	CategoriesContainer,
 	ClassificationContainer,
@@ -13,12 +15,20 @@ import {
 const Categories = (props) => {
 	const articles = useSelector(selectorArticles);
 
-	const classifications = articles.reduce((currentCategorys, article) => {
+	if (!articles) {
+		return (
+			<CategoriesContainer>
+				<Spinner character='LOADING' />
+			</CategoriesContainer>
+		);
+	}
+
+	const classifications = articles?.reduce((currentCategorys, article) => {
 		currentCategorys.push(article.category);
 		return [...new Set(currentCategorys.toString().split(","))];
 	}, []);
 
-	const labels = articles.reduce((currentLabels, article) => {
+	const labels = articles?.reduce((currentLabels, article) => {
 		currentLabels.push(article.label);
 		return [...new Set(currentLabels.toString().split(","))];
 	}, []);
@@ -28,9 +38,11 @@ const Categories = (props) => {
 			<ClassificationContainer>
 				<h1>分类</h1>
 				<Classification>
-					{classifications.map((item) => {
+					{classifications?.map((item) => {
 						return (
-							<ClassificationItem href={`/navi/articles/?category=${item}`}>
+							<ClassificationItem
+								href={`/navi/articles/?category=${item}`}
+								key={item}>
 								{item}
 							</ClassificationItem>
 						);
@@ -40,9 +52,9 @@ const Categories = (props) => {
 			<LabelContainer>
 				<h1>标签</h1>
 				<LabelTabel>
-					{labels.map((item) => {
+					{labels?.map((item) => {
 						return (
-							<LabelItem href={`/navi/articles/?label=${item}`}>
+							<LabelItem href={`/navi/articles/?label=${item}`} key={item}>
 								{item}
 							</LabelItem>
 						);

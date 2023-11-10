@@ -66,7 +66,7 @@ const Profile = () => {
 				<PortraitChange>
 					<div>
 						<Portrait
-							imgUrl={`http://42.194.140.99:80/img/users/${currentUser.photo}`}
+							imgUrl={`http://localhost:80/img/users/${currentUser.photo}`}
 						/>
 						<form action='' onSubmit={fileSubmit}>
 							<FormUploadPhoto

@@ -1,13 +1,9 @@
-import { ReactComponent as NavBarToggle } from "../../Assets/navBarToggle.svg";
-
 import { NavBarToggleContainer } from "./navbartoggle.style";
 
-const NavBartoggle = props => {
-    return(
-        <NavBarToggleContainer color={props.color}>
-            <NavBarToggle />
-        </NavBarToggleContainer>
-    )
-}
+const NavBartoggle = ({ color, children }) => {
+	return (
+		<NavBarToggleContainer color={color}>{children}</NavBarToggleContainer>
+	);
+};
 
-export default NavBartoggle
+export default NavBartoggle;

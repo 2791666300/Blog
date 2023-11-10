@@ -5,7 +5,7 @@ const PortraitName = (props) => {
 	return (
 		<PortraitNameContainer>
 			<HeadPortrait
-				src={`http://42.194.140.99:80/img/users/${props.photo}`}
+				src={`http://localhost:80/img/users/${props.photo}`}
 				alt='default'
 			/>
 			<NameTable>{props.name}</NameTable>

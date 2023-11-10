@@ -11,7 +11,7 @@ class AIPFeatures {
         const excludedFields = ['page', 'sort', 'limit', 'fields'];
         excludedFields.forEach(el => delete queryOjb[el])
 
-        // 2）高级过滤 advanced Filtering 有大于小于等需求时 http://42.194.140.99:80/api/v1/tours?code=ABW& id[gt]=1
+        // 2）高级过滤 advanced Filtering 有大于小于等需求时 http://localhost:80/api/v1/tours?code=ABW& id[gt]=1
         // req.query 返回{ code: 'ABW', id: { gt: '1' } } 所以要在gt前加 $ 符号 
         let queryStr = JSON.stringify(queryOjb);
         queryStr = queryStr.replace(/\b(gte|gt|lt|lte)\b/g, match => `$${match}`)

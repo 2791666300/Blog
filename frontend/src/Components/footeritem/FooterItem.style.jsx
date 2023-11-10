@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Item = styled.li`
 	display: inline-block;
@@ -8,7 +9,7 @@ export const Item = styled.li`
 	}
 `;
 
-export const ItemLink = styled.a`
+export const ItemLink = styled(Link)`
 	&:link,
 	&:visited {
 		color: #f7f7f7;
@@ -17,10 +18,12 @@ export const ItemLink = styled.a`
 		text-transform: uppercase;
 		display: inline-block;
 		transition: all 0.2s;
+		
 		&:hover,
 		&:active {
 			color: #c69963;
-			box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
+			box-shadow: 0 0 0.5rem black;
+			padding: 0 0.3rem;
 			transform: rotate(5deg) scale(1.3);
 		}
 	}

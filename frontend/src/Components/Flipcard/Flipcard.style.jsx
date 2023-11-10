@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 export const CartContainer = styled.div`
-	background-color: #d7d7d7;
+	background-color: white;
 	height: ${({ size }) => `${size}px`};
 	width: ${({ size }) => `${size}px`};
+	text-align: center;
 
-	color: black;
+	color: #b28451;
+
 	font-size: ${({ size }) => `${size / 15}rem`};
 	perspective: 500px;
 
@@ -20,8 +22,8 @@ export const CartContainer = styled.div`
 		height: ${({ size }) => `${size / 25}px`};
 		background: linear-gradient(
 			to bottom,
-			#000,
-			#000 ${({ size }) => `${size / 50}px`},
+			#b28451,
+			#b28451 ${({ size }) => `${size / 50}px`},
 			#fff ${({ size }) => `${size / 50}px`}
 		);
 		top: 50%;
@@ -45,7 +47,7 @@ export const CartContainer = styled.div`
 	.cart2 {
 		top: 50%;
 		line-height: 0;
-		background-color: #d7d7d7;
+		background-color: white;
 		transform: rotateX(180deg);
 		transform-origin: center top;
 		backface-visibility: hidden;
@@ -53,9 +55,8 @@ export const CartContainer = styled.div`
 		z-index: 10;
 	}
 
-
 	.cart3 {
-		background-color: #d7d7d7;
+		background-color: white;
 		line-height: ${({ size }) => `${size}px`};
 		z-index: 10;
 		transform-origin: center bottom;

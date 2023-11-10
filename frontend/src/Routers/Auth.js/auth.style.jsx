@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Breakpoint from "../../constants/Breakpoint";
 
 export const AuthContainer = styled.div`
 	width: 100%;
@@ -7,8 +8,6 @@ export const AuthContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	flex-direction: column;
-	font-family: sans-serif;
 
 	form {
 		background-color: #fff;
@@ -21,9 +20,6 @@ export const AuthContainer = styled.div`
 		text-align: center;
 	}
 
-	input {
-	}
-
 	.container {
 		background-color: #fff;
 		border-radius: 10px;
@@ -34,6 +30,12 @@ export const AuthContainer = styled.div`
 		width: 768px;
 		max-width: 100%;
 		min-height: 480px;
+		@media only screen and (max-width: ${Breakpoint.bp_small}) {
+			display: flex;
+			flex-direction: column-reverse;
+			width: 100vw;
+			height: 100vh;
+		}
 	}
 
 	.form-container {
@@ -41,12 +43,20 @@ export const AuthContainer = styled.div`
 		top: 0;
 		height: 100%;
 		transition: all 0.6s ease-in-out;
+
+		@media only screen and (max-width: ${Breakpoint.bp_small}) {
+			height: 50%;
+			position: relative;
+		}
 	}
 
 	.sign-in-container {
 		left: 0;
 		width: 50%;
 		z-index: 2;
+		@media only screen and (max-width: ${Breakpoint.bp_small}) {
+			width: 100%;
+		}
 	}
 
 	.sign-up-container {
@@ -54,6 +64,11 @@ export const AuthContainer = styled.div`
 		width: 50%;
 		opacity: 0;
 		z-index: 1;
+		@media only screen and (max-width: ${Breakpoint.bp_small}) {
+			opacity: 1;
+			right: 0;
+			width: 100%;
+		}
 	}
 
 	@keyframes show {
@@ -80,6 +95,10 @@ export const AuthContainer = styled.div`
 		overflow: hidden;
 		transition: transform 0.6s ease-in-out;
 		z-index: 50;
+
+		@media only screen and (max-width: ${Breakpoint.bp_small}) {
+			display: none;
+		}
 	}
 
 	.overlay {

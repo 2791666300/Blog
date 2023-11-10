@@ -6,24 +6,26 @@ import {
 	FooterCopyright,
 } from "./Footer2.style";
 const FooterTwo = () => {
+	function scolltoTop() {
+		window.scrollTo(0, 0);
+	}
 	return (
-		<FooterContainer>
+		<FooterContainer onClick={scolltoTop}>
 			<FooterNavigation>
 				<ul>
 					<FooterItem>company</FooterItem>
-					<FooterItem>Contact us</FooterItem>
+					<FooterItem to='/navi/aboutme'>联系我</FooterItem>
 					<FooterItem>Carrers</FooterItem>
-					<FooterItem>Privacy policy</FooterItem>
-					<FooterItem>Terms</FooterItem>
+					<FooterItem>隐私政策</FooterItem>
+					<FooterItem>团队</FooterItem>
 				</ul>
 			</FooterNavigation>
 			<FooterCopyright>
 				<Text>
-					&nbsp; &nbsp;Built by &nbsp;<FooterItem>Lemon Flavor</FooterItem>.
-					Copyright © by
-					<FooterItem>Lemon Flavor</FooterItem>. You are 100% allowed to use
-					this webpage for both personal and commercial use, but NOT to claim it
-					as your own design.
+					&nbsp; &nbsp; 由 &nbsp;
+					<FooterItem to='/navi/aboutme'>Lemon Flavor</FooterItem>. 版权所有 ©by{" "}
+					<FooterItem to='/navi/aboutme'>Lemon Flavor</FooterItem>.
+					您可以100%将此网页用于个人和商业用途，但不能声称它是您自己的设计。
 				</Text>
 			</FooterCopyright>
 		</FooterContainer>

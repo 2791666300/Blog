@@ -3,7 +3,7 @@ import { Item, ItemLink } from "./FooterItem.style";
 const FooterItem = (props) => {
 	return (
 		<Item>
-			<ItemLink href='#'>{props.children}</ItemLink>
+			<ItemLink to={props.to}>{props.children}</ItemLink>
 		</Item>
 	);
 };

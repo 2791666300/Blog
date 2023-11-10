@@ -8,7 +8,7 @@ export const Login = async (objects) => {
     try {
         const res = await axios({
             method: 'POST',
-            url: 'http://42.194.140.99:80/api/v1/user/login',
+            url: 'http://localhost:80/api/v1/user/login',
             data: objects
         })
 
@@ -36,7 +36,7 @@ export const getMe = async () => {
             params: {
                 cookie: window.document.cookie
             },
-            url: 'http://42.194.140.99:80/api/v1/user/Me',
+            url: 'http://localhost:80/api/v1/user/Me',
         })
 
         const UserArr = res.data.data.user
@@ -51,7 +51,7 @@ export const SignUp = async (objects) => {
     try {
         const res = await axios({
             method: 'POST',
-            url: 'http://42.194.140.99:80/api/v1/user/signup',
+            url: 'http://localhost:80/api/v1/user/signup',
             data: objects
         })
         const UserArr = res.data.data.user
@@ -72,7 +72,7 @@ export const LogOut = async () => {
     try {
         const res = await axios({
             method: 'GET',
-            url: 'http://42.194.140.99:80/api/v1/user/logout'
+            url: 'http://localhost:80/api/v1/user/logout'
         })
 
         Cookies.remove('user')
@@ -100,9 +100,16 @@ export const UpdateMe = async (objects) => {
             params: {
                 cookie: window.document.cookie
             },
-            url: 'http://42.194.140.99:80/api/v1/user/updateMe',
+            url: 'http://localhost:80/api/v1/user/updateMe',
             data: { ...objects, cookie: window.document.cookie }
         })
+        if (res.data) {
+
+            window.setTimeout(() => {
+                window.location.reload(true)
+
+            }, 1500)
+        }
         return res.data.data.updateUser
 
     } catch (err) {
@@ -119,7 +126,7 @@ export const updatePassword = async (objects) => {
             params: {
                 cookie: window.document.cookie
             },
-            url: 'http://42.194.140.99:80/api/v1/user/updatePassword',
+            url: 'http://localhost:80/api/v1/user/updatePassword',
             data: { ...objects, cookie: window.document.cookie }
         })
 
@@ -142,7 +149,7 @@ export const getAllUsers = async () => {
             params: {
                 cookie: window.document.cookie
             },
-            url: 'http://42.194.140.99:80/api/v1/user/'
+            url: 'http://localhost:80/api/v1/user/'
         })
 
         return res.data.data.users

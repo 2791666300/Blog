@@ -16,6 +16,10 @@ export const NavigationContainer = styled.div`
 	position: fixed;
 	top: 0;
 	z-index: 10;
+
+	.drop {
+		margin-right: 1.5rem;
+	}
 `;
 
 export const LogoContainer = styled(Link)`
@@ -23,6 +27,10 @@ export const LogoContainer = styled(Link)`
 	height: 100%;
 	margin-left: 5rem;
 	display: flex;
+	@media only screen and (max-width: ${Breakpoint.bp_phone}) {
+		margin-left: 0;
+	}
+
 	img {
 		width: 100%;
 		height: 100%;
@@ -117,7 +125,9 @@ export const BrightnessPageButton = styled.button`
 	border: none;
 
 	border-radius: 50%;
-
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
 	background-color: inherit;
 	margin: 0 0.5rem;
 	&:hover {
@@ -126,12 +136,11 @@ export const BrightnessPageButton = styled.button`
 	@media only screen and (max-width: ${Breakpoint.bp_medium}) {
 		width: 3rem;
 		height: 3rem;
-		margin: 0 0.1rem;
+		margin: 0 1rem;
 	}
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	svg {
+
+	svg,
+	span {
 		width: 80%;
 		height: 80%;
 		path {

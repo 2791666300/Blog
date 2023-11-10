@@ -8,15 +8,25 @@ export const AboutBlogContainer = styled.div`
 	@media only screen and (max-width: ${Breakpoint.bp_large}) {
 		font-size: 1rem;
 	}
-	background: url("/img/hero-4.jpg");
+	background: url("/img/bgimg-1.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-position: right;
+	@media only screen and (max-width: ${Breakpoint.bp_medium}) {
+		background-position: right;
+	}
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	overflow: auto;
+`;
+
+export const AbTitle = styled.h1`
+	font-size: 5rem;
+	margin: 2rem;
+	@media only screen and (max-width: ${Breakpoint.bp_small}) {
+		font-size: 3.5rem;
+	}
 `;
 
 export const ProviderContainer = styled.div`

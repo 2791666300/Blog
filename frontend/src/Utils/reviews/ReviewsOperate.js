@@ -4,7 +4,7 @@ export const GetAllCurrentReviews = async (id) => {
     try {
         const res = await axios({
             method: 'GET',
-            url: `http://42.194.140.99:80/api/v1/articles/${id}/reviews`
+            url: `http://localhost:80/api/v1/articles/${id}/reviews`
         })
         return res.data.data.data
     } catch (err) {
@@ -16,7 +16,7 @@ export const CreateReview = async (data) => {
     try {
         const res = await axios({
             method: 'POST',
-            url: `http://42.194.140.99:80/api/v1/articles/${data.articleId}/reviews`,
+            url: `http://localhost:80/api/v1/articles/${data.articleId}/reviews`,
             data: { review: data.review, cookie: window.document.cookie }
         })
 
@@ -34,7 +34,7 @@ export const UpdateReview = async (data) => {
             params: {
                 cookie: window.document.cookie
             },
-            url: `http://42.194.140.99:80/api/v1/reviews/${data.reviewId}`,
+            url: `http://localhost:80/api/v1/reviews/${data.reviewId}`,
             data: data
         })
 
@@ -49,7 +49,7 @@ export const GetAllReviews = async () => {
     try {
         const res = await axios({
             method: 'GET',
-            url: 'http://42.194.140.99:80/api/v1/reviews/'
+            url: 'http://localhost:80/api/v1/reviews/'
         })
 
         return res.data.data.data

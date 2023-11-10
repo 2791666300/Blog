@@ -65,7 +65,7 @@ const CreatorHome = (props) => {
 			</CreatorSidebar>
 			<CreatorContent>
 				<DataAnalysis>
-					<h1>文章数据</h1>
+					<h1>数据概览</h1>
 					<AnalysisList>
 						<AnalysisItem>
 							<strong>文章总篇数</strong>
@@ -94,7 +94,7 @@ const CreatorHome = (props) => {
 					</AnalysisList>
 				</DataAnalysis>
 				<DataChart>
-					<h1>数据分析(待上线)</h1>
+					<h1>数据趋势</h1>
 					<ChartContent>
 						<img src='/img/数据分析2.gif' alt='数据分析图' />
 						<img src='/img/数据分析2.gif' alt='数据分析图' />

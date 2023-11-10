@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import Colors from "../../constants/Colors";
 import Breakpoint from "../../constants/Breakpoint";
 
@@ -26,7 +27,7 @@ export const SearchFromInput = styled.input`
 	height: 5rem;
 	width: 90%;
 	margin: 1rem;
-	padding: 0rem;
+	padding: 0 1rem;
 	border-radius: 0.5rem;
 	outline: 2px solid ${Colors.color_green_1};
 	border: none;
@@ -41,12 +42,18 @@ export const SearchContent = styled.div`
 	color: white;
 	overflow: auto;
 `;
-export const SearchContentItem = styled.div`
+export const SearchContentItem = styled(Link)`
 	height: 5rem;
 	border-top: 0.1px solid rgba(255, 255, 255, 0.4);
 	border-bottom: 0.1px solid rgba(255, 255, 255, 0.4);
 	padding: 1rem;
+	margin: 0.5rem 0;
 	border-radius: 1rem;
+	cursor: pointer;
+	color: white;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	&:hover {
 		background-color: ${Colors.color_green_1};
 	}
@@ -60,9 +67,6 @@ export const SearchContentItem = styled.div`
 			fill: white;
 		}
 	}
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 `;
 
 export const SearchButtonContainer = styled.div`

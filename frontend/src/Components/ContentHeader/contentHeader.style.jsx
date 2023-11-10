@@ -43,7 +43,11 @@ export const ContentHeaderContainer = styled.div`
 `;
 
 export const ContentHeaderTitle = styled.h1`
-	font-size: 5rem;
+	font-size: 4.5rem;
 	margin-bottom: 3rem;
 	text-align: center;
+
+	@media only screen and (max-width: ${Breakpoint.bp_small}) {
+		font-size: 3rem;
+	}
 `;

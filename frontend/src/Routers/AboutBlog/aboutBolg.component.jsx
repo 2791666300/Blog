@@ -1,19 +1,30 @@
 import { Timeline, ConfigProvider } from "antd";
-
-import { useSelector } from "react-redux";
-
-import { FileTextFilled } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { FileTextFilled } from "@ant-design/icons";
 
+import Spinner from "../../Components/Spinner/Spinner.component";
 import { timeConversion } from "../../Utils/TimeConversion";
 
-import { AboutBlogContainer, ProviderContainer } from "./aboutBolg.style";
+import {
+	AboutBlogContainer,
+	AbTitle,
+	ProviderContainer,
+} from "./aboutBolg.style";
 import { selectorArticles } from "../../Store/articles/articles.selector";
 
 const AboutBolg = () => {
 	const articles = useSelector(selectorArticles);
 
-	const items = articles.map((article) => {
+	if (!articles) {
+		return (
+			<AboutBlogContainer>
+				<Spinner character='LOADING' />
+			</AboutBlogContainer>
+		);
+	}
+
+	const items = articles?.map((article) => {
 		return {
 			children: timeConversion(new Date(article.publication)),
 			label: (
@@ -29,8 +40,8 @@ const AboutBolg = () => {
 
 	return (
 		<AboutBlogContainer>
+			<AbTitle>时间轴</AbTitle>
 			<ProviderContainer>
-				<h2 style={{ textAlign: "center", paddingBottom: "5rem" }}>时间轴</h2>
 				<ConfigProvider
 					theme={{
 						components: {

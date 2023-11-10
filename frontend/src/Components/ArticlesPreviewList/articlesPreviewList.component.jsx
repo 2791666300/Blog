@@ -6,13 +6,19 @@ import { selectorCurrentUser } from "../../Store/users/user.selector";
 import ArticlesPreviewItem from "../ArticlesPreviewItem/articlesPreviewItem.component";
 import Button, { BUTTON_TYPE_CLASSES } from "../Button/button-component";
 
+import Spinner from "../Spinner/Spinner.component";
 import {
 	ArticlesPreviewListContainer,
 	GoToCreatorContainer,
+	ArticlesNav,
+	NavItem,
 } from "./articlesPreviewList.style";
+import { useState } from "react";
 
 const ArticlesPreviewList = (props) => {
 	const articles = useSelector(selectorArticles);
+	const [filters, setFilter] = useState(null);
+
 	const currentUser = useSelector(selectorCurrentUser);
 
 	const [search] = useSearchParams();
@@ -21,8 +27,8 @@ const ArticlesPreviewList = (props) => {
 
 	if (!articles) {
 		return (
-			<ArticlesPreviewListContainer>
-				<h1>啥也没有！</h1>
+			<ArticlesPreviewListContainer lodaing={!articles}>
+				<Spinner character='LOADING' />
 			</ArticlesPreviewListContainer>
 		);
 	}
@@ -40,8 +46,29 @@ const ArticlesPreviewList = (props) => {
 		});
 	}
 
+	function compreHandler() {
+		setFilter(null);
+		
+	}
+
+	function latestHandler() {
+		articlesPreViews = articlesPreViews.sort(
+			(a, b) =>
+				Math.round(new Date(b.publication)) -
+				Math.round(new Date(a.publication)),
+		);
+
+		setFilter(articlesPreViews);
+	}
+
+	function hottest() {
+		articlesPreViews = articlesPreViews.sort((a, b) => b.clicked - a.clicked);
+
+		setFilter(articlesPreViews);
+	}
+
 	return (
-		<ArticlesPreviewListContainer>
+		<ArticlesPreviewListContainer lodaing={!articles}>
 			{currentUser && currentUser.role === "blogger" && (
 				<GoToCreatorContainer>
 					<a href='/navi/creator'>
@@ -51,9 +78,18 @@ const ArticlesPreviewList = (props) => {
 					</a>
 				</GoToCreatorContainer>
 			)}
-			{articlesPreViews.map((article) => {
-				return <ArticlesPreviewItem article={article} key={article.id} />;
-			})}
+			<ArticlesNav>
+				<NavItem onClick={compreHandler}>综合排序</NavItem>
+				<NavItem onClick={latestHandler}>最新优先</NavItem>
+				<NavItem onClick={hottest}>最热优先</NavItem>
+			</ArticlesNav>
+			{filters
+				? filters.map((article) => {
+						return <ArticlesPreviewItem article={article} key={article.id} />;
+				  })
+				: articlesPreViews.map((article) => {
+						return <ArticlesPreviewItem article={article} key={article.id} />;
+				  })}
 		</ArticlesPreviewListContainer>
 	);
 };

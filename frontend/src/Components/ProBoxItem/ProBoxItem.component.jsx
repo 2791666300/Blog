@@ -25,10 +25,21 @@ const ProBoxItem = (props) => {
 					{address} &rarr;
 				</TextButton>
 			</Brief>
-			<Picture>
+			<Picture className='composition'>
+				{props?.imgs &&
+					props.imgs.map((item, index) => (
+						<img
+							src={item}
+							alt={item}
+							key={item}
+							className={`composition__photo composition__photo--p${index + 1}`}
+						/>
+					))}
+			</Picture>
+			{/* <Picture>
 				{props?.imgs &&
 					props.imgs.map((item) => <img src={item} alt={item} key={item} />)}
-			</Picture>
+			</Picture> */}
 		</ProBoxItemContainer>
 	);
 };

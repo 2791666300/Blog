@@ -3,7 +3,7 @@ const Breakpoint = {
     bp_large: '62.5rem', // 1000px
     bp_medium: '50rem',  // 800px
     bp_small: '37.5rem', // 600px
-    bp_phone: '30rem' 
+    bp_phone: '30rem'    // 480px   
 }
 
 export default Breakpoint

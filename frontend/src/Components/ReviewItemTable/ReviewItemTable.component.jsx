@@ -56,7 +56,7 @@ const ReviewItemTable = (props) => {
 		<ReviewsItemContainer>
 			<ReviewsItemPhoto>
 				<img
-					src={`http://42.194.140.99:80/img/users/${commentUser.photo}`}
+					src={`http://localhost:80/img/users/${commentUser.photo}`}
 					alt={commentUser.photo}
 				/>
 			</ReviewsItemPhoto>

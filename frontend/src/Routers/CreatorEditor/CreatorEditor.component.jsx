@@ -47,7 +47,7 @@ const CreatorEditor = (props) => {
 			form.append("img", file);
 			const res = await axios({
 				method: "POST",
-				url: "http://42.194.140.99:80/api/v1/articles/addimg",
+				url: "http://localhost:80/api/v1/articles/addimg",
 				data: form,
 			});
 			if (res.data.status === "success") {
@@ -57,7 +57,7 @@ const CreatorEditor = (props) => {
 				});
 			}
 			const url =
-				"http://42.194.140.99:80/" +
+				"http://localhost:80/" +
 				res.data.replace(/^public\\/, "").replace(/\\/g, "/");
 
 			setValue((v) => v + `\n![${res.data}](${url})`);
@@ -90,7 +90,7 @@ const CreatorEditor = (props) => {
 			try {
 				const res = await axios({
 					method: "POST",
-					url: "http://42.194.140.99:80/api/v1/articles",
+					url: "http://localhost:80/api/v1/articles",
 					data: data,
 				});
 
@@ -113,7 +113,7 @@ const CreatorEditor = (props) => {
 			try {
 				const res = await axios({
 					method: "PATCH",
-					url: `http://42.194.140.99:80/api/v1/articles/${articleId}`,
+					url: `http://localhost:80/api/v1/articles/${articleId}`,
 					data: data,
 				});
 

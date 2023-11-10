@@ -12,7 +12,7 @@ export const BaseButton = styled.div`
 			font-size: 1.8rem;
 			border-bottom: 1px solid ${Colors.color_primary_2};
 			padding: 0.3rem;
-			margin: 0.5rem 0;
+			margin: 0.5rem;
 			transition: all 0.1s;
 			@media only screen and (max-width: ${Breakpoint.bp_large}) {
 				font-size: 1.4rem;

@@ -16,7 +16,7 @@ const app = express()
 
 // app.use((req, res, next) => {
 
-//     res.setHeader('Access-Control-Allow-Origin', 'http://42.194.140.99:80')
+//     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:80')
 //     res.setHeader('Access-Control-Allow-Credentials', 'true')
 //     next()
 // })

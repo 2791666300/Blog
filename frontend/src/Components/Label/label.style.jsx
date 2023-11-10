@@ -4,7 +4,8 @@ import Breakpoint from "../../constants/Breakpoint";
 
 export const LabelContainer = styled.a`
 	height: 2.2rem;
-	width: 5rem;
+	width: 6rem;
+
 	@media only screen and (max-width: ${Breakpoint.bp_phone}) {
 		height: 1.8rem;
 		width: 3rem;

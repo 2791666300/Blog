@@ -6,6 +6,7 @@
 	"scripts": {
 		"production": "cross-env NODE_ENV=production nodemon server.js",
 		"start": "cross-env NODE_ENV=development nodemon server.js",
+		"pm2server": "cross-env NODE_ENV=development pm2 start server.js",
 		"debug": "ndb server.js",
 		"watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
 		"build:js": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js"

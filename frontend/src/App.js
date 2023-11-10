@@ -14,6 +14,7 @@ import Friendship from './Routers/Friendship/friendship.component';
 import AboutMe from './Routers/AboutMe/aboutMe.component';
 import AboutBlog from './Routers/AboutBlog/aboutBolg.component';
 import More from './Routers/More/more.component';
+import Components from './Routers/Components/Components.component';
 import YourSelf from './Routers/YourSelfPage/YourSelf/yourself.component';
 import CreatorPage from './Routers/CreatorPage/creator.component'
 
@@ -48,6 +49,7 @@ function App() {
           <Route path='aboutme' element={<AboutMe />} />
           <Route path='aboutblog' element={<AboutBlog />} />
           <Route path='more' element={<More />} />
+          <Route path='component' element={<Components />} />
           <Route path='creator/*' element={< CreatorPage />} />
           <Route path='yourself/*' element={<YourSelf />} >
             <Route index element={<Profile />} />

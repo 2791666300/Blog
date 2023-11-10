@@ -1,14 +1,19 @@
 import styled from "styled-components";
 import Colors from "../../constants/Colors";
+import Breakpoint from "../../constants/Breakpoint";
 
 export const MarkDetailStyle = styled.div`
-	font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
 	line-height: 2;
-
+	font-family: -apple-system-font, BlinkMacSystemFont, Helvetica Neue,
+		PingFang SC, Hiragino Sans GB, Microsoft YaHei UI, Microsoft YaHei, Arial,
+		sans-serif;
 	box-sizing: border-box;
 	padding: 10px 14px;
 
-	font-size: 16px;
+	font-size: 1.6rem;
+	@media only screen and (max-width: ${Breakpoint.bp_small}) {
+		font-size: 1.2rem;
+	}
 	p,
 	blockquote,
 	ul,
@@ -137,13 +142,25 @@ export const MarkDetailStyle = styled.div`
 		text-align: left;
 
 		thead {
-			background: #eee;
+			background-color: RGB(16, 124, 65);
+		}
+
+		tbody {
+			tr {
+				td:first-child {
+					min-width: 10rem;
+				}
+			}
 		}
 
 		th,
 		td {
-			padding: 0.1em 0.4em;
+			padding: 0.5rem;
 			border: 1px solid #ddd;
+		}
+
+		th {
+			text-align: center;
 		}
 	}
 

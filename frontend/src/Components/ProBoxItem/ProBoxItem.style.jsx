@@ -3,7 +3,8 @@ import Breakpoint from "../../constants/Breakpoint";
 
 export const ProBoxItemContainer = styled.div`
 	display: flex;
-	margin-top: 10rem;
+	margin-top: 5rem;
+	margin-bottom: 5rem;
 	flex-direction: ${({ layout }) => `${layout}`};
 	@media only screen and (max-width: ${Breakpoint.bp_medium}) {
 		flex-direction: column;
@@ -21,22 +22,74 @@ export const Brief = styled.div`
 `;
 
 export const Picture = styled.div`
+	position: relative;
+
+	margin: 2rem;
+	margin-top: 10rem;
 	flex: 1;
-	display: flex;
-	justify-content: space-evenly;
-	flex-wrap: wrap;
-	padding: 2rem;
 	@media only screen and (max-width: ${Breakpoint.bp_small}) {
 		padding: 1rem;
+		margin-top: 5rem;
 	}
-	img {
-		width: 26rem;
-		object-fit: cover;
-		margin: 1rem;
-		box-shadow: -1rem 1rem 2rem rgba(46, 37, 37, 0.6);
-		@media only screen and (max-width: ${Breakpoint.bp_small}) {
-			width: 20rem;
+
+	.composition {
+		&__photo {
+			width: 50%;
+			box-shadow: -1rem 1rem 2rem rgba(46, 37, 37, 0.6);
+			@media only screen and (max-width: ${Breakpoint.bp_medium}) {
+				width: 20%;
+			}
+			box-shadow: 0 1.5rem 4rem rgba(black, 0.4);
+			border-radius: 2px;
+			position: absolute;
+			z-index: 1;
+			transition: all 0.2s;
+			outline-offset: 1.5rem;
+
+			@media only screen and (max-width: ${Breakpoint.bp_medium}) {
+				float: left;
+				position: relative;
+				width: 33.333333%;
+				box-shadow: 0 1.5rem 4rem rgba(black, 0.2);
+			}
+
+			&--p1 {
+				left: 0;
+				top: -2rem;
+				@media only screen and (max-width: ${Breakpoint.bp_medium}) {
+					top: 0;
+					/* left: 50%; */
+				}
+			}
+			&--p2 {
+				right: 0;
+				top: 2rem;
+
+				@media only screen and (max-width: ${Breakpoint.bp_medium}) {
+					top: -3rem;
+					transform: scale(1.3);
+					z-index: 2;
+				}
+			}
+			&--p3 {
+				left: 20%;
+				top: 10rem;
+				@media only screen and (max-width: ${Breakpoint.bp_medium}) {
+					top: 0;
+					left: 0;
+				}
+			}
+
+			&:hover {
+				outline: 0.8rem solid #18df16;
+				transform: scale(1.1) translateY(-0.5rem);
+				box-shadow: 0 2.5rem 4rem rgba(black, 0.5);
+				z-index: 3;
+			}
 		}
+	}
+	&:hover .composition__photo:not(:hover) {
+		transform: scale(0.9);
 	}
 `;
 
@@ -47,7 +100,7 @@ export const ProBoxItemTitle = styled.div`
 		position: absolute;
 		height: 1rem;
 		width: 3.5rem;
-		background-color: RGB(0, 199, 0);
+		background-color: #18df16;
 		left: 0.3rem;
 		top: -0.1rem;
 	}
